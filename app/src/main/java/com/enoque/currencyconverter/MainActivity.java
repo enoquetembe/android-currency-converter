@@ -1,35 +1,42 @@
 package com.enoque.currencyconverter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.EditText;
-import android.widget.Button;
-import android.widget.TextView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText meticalEditText = findViewById(R.id.metical_txt);
-    private TextView resultTxt = findViewById(R.id.result_txt);
-    Button btnConvert = findViewById(R.id.convert_btn);
+
+    private  TextView txtResult;
+    private Button btnResult;
+    private  EditText etxtValue;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnConvert.setOnClickListener(new View.OnClickListener() {
+        txtResult = findViewById(R.id.result_txt);
+        btnResult = findViewById(R.id.convert_btn);
+        etxtValue = findViewById(R.id.metical_txt);
+
+        btnResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Double meticalValue = Double.valueOf(etxtValue.getText().toString());
+                Double dolar = 63.0;
 
-                double meticalValor = Double.parseDouble(meticalEditText.getText().toString());
-                double dolar = meticalValor * 63;
+                Double convert = meticalValue * dolar;
 
-                resultTxt.setText("" +dolar);
+
+                txtResult.setText("" +convert);
             }
         });
+
     }
-
-
-
 
 }
